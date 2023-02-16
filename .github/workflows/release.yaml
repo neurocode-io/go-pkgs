@@ -1,13 +1,9 @@
-name: goreleaser
+name: release
 
 on:
   push:
     tags:
       - "*"
-
-permissions:
-  contents: write
-
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
@@ -22,11 +18,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: ">=1.20"
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v4
-        with:
-          distribution: goreleaser
-          version: latest
-          args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release Go module
+        run: |
+          go mod tidy
+          GOPROXY=proxy.golang.org go list -m github.com/neurocode-io/go-pkgs@${{  github.ref_name }}
