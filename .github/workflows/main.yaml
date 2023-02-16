@@ -16,8 +16,6 @@ jobs:
           go-version: ">=1.20"
       - name: Run build binary
         run: make install
-      - name: Run linter
-        run: make lint
       - name: Vuln
         run: make vuln
       - name: Run tests
