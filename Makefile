@@ -11,11 +11,13 @@ pre:
 
 install:
 	go install golang.org/x/vuln/cmd/govulncheck@latest
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
 test:
 	go test -race -v --coverprofile=coverage.out ./...
 	go tool cover -func coverage.out | grep total
+
+format:
+	gofumpt -l -w .
 
 bench:
 	go test -bench=. -benchmem ./...
