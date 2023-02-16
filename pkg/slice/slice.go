@@ -6,8 +6,10 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-type mapFunc[T any] func(T) T
-type keepFunc[T any] func(T) bool
+type (
+	mapFunc[T any]  func(T) T
+	keepFunc[T any] func(T) bool
+)
 
 func Contains[T comparable](s []T, v T) bool {
 	for _, vs := range s {

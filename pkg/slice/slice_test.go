@@ -191,6 +191,16 @@ func TestSlice(t *testing.T) {
 				t.Error("expected result to be true")
 			}
 		})
+
+		t.Run("negative", func(t *testing.T) {
+			s := []string{"a", "b", "c", "d", "e"}
+			r := All(s, func(v string) bool {
+				return v == "a"
+			})
+			if r {
+				t.Error("expected result to be false")
+			}
+		})
 	})
 
 	t.Run("Any", func(t *testing.T) {
@@ -213,6 +223,7 @@ func TestSlice(t *testing.T) {
 				t.Error("expected result to be true")
 			}
 		})
+
 	})
 
 	t.Run("None", func(t *testing.T) {
@@ -353,6 +364,16 @@ func TestSlice(t *testing.T) {
 				t.Error("expected result to be c")
 			}
 		})
+
+		t.Run("not found", func(t *testing.T) {
+			s := []string{"a", "b", "c", "d", "e"}
+			_, ok := Find(s, func(v string) bool {
+				return v == "f"
+			})
+			if ok {
+				t.Error("expected ok to be false")
+			}
+		})
 	})
 
 	t.Run("FindIndex", func(t *testing.T) {
@@ -379,6 +400,16 @@ func TestSlice(t *testing.T) {
 			}
 			if r != 2 {
 				t.Error("expected result to be 2")
+			}
+		})
+
+		t.Run("not found", func(t *testing.T) {
+			s := []string{"a", "b", "c", "d", "e"}
+			_, ok := FindIndex(s, func(v string) bool {
+				return v == "f"
+			})
+			if ok {
+				t.Error("expected ok to be false")
 			}
 		})
 	})
