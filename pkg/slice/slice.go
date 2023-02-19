@@ -33,7 +33,7 @@ func Contains[T comparable](slice []T, value T) bool {
 
 // Reverse returns a reversed copy of the slice.
 func Reverse[T any](slice []T) []T {
-	result := make([]T, len(slice))
+	result := make([]T, 0, len(slice))
 	for i := len(slice) - 1; i >= 0; i-- {
 		result = append(result, slice[i])
 	}
@@ -110,7 +110,7 @@ func Merge[T any](slices ...[]T) []T {
 //	result := slice.Filter(input, fn)
 //	// result == []int{2, 4}
 func Filter[T any](slice []T, fn keepFunc[T]) []T {
-	result := make([]T, len(slice))
+	result := make([]T, 0, len(slice))
 	for _, v := range slice {
 		if fn(v) {
 			result = append(result, v)
