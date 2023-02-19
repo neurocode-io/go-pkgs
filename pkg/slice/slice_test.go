@@ -24,6 +24,10 @@ func TestSlice(t *testing.T) {
 			t.Errorf("expected length to be %d, got %d", len(s), len(r))
 		}
 
+		if r[0] == s[0] {
+			t.Error("expected to copy the slice")
+		}
+
 		if r[0] != 5 {
 			t.Error("expected first element to be 5")
 		}
