@@ -19,6 +19,10 @@ Slice is a package that provides a set of functions to work with slices.
 
 Map is a package that provides a set of functions to work with maps.
 
+### set
+
+Set is a package that provides a generic set implementation.
+
 ### streams
 
 Coming soon
