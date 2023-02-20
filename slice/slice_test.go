@@ -417,6 +417,70 @@ func TestSlice(t *testing.T) {
 			}
 		})
 	})
+
+	t.Run("Union", func(t *testing.T) {
+		t.Run("int", func(t *testing.T) {
+			s1 := []int{1, 2, 3, 4, 5}
+			s2 := []int{3, 4, 5, 6, 7}
+			r := Union(s1, s2)
+			if len(r) != 7 {
+				t.Errorf("expected length to be 7, got %d", len(r))
+			}
+			if r[0] != 1 {
+				t.Error("expected first element to be 1")
+			}
+			if r[len(r)-1] != 7 {
+				t.Error("expected last element to be 7")
+			}
+		})
+
+		t.Run("string", func(t *testing.T) {
+			s1 := []string{"a", "b", "c", "d", "e"}
+			s2 := []string{"c", "d", "e", "f", "g"}
+			r := Union(s1, s2)
+			if len(r) != 7 {
+				t.Errorf("expected length to be 7, got %d", len(r))
+			}
+			if r[0] != "a" {
+				t.Error("expected first element to be a")
+			}
+			if r[len(r)-1] != "g" {
+				t.Error("expected last element to be g")
+			}
+		})
+	})
+
+	t.Run("Intersect", func(t *testing.T) {
+		t.Run("int", func(t *testing.T) {
+			s1 := []int{1, 2, 3, 4, 5}
+			s2 := []int{3, 4, 5, 6, 7}
+			r := Intersection(s1, s2)
+			if len(r) != 3 {
+				t.Errorf("expected length to be 3, got %d", len(r))
+			}
+			if r[0] != 3 {
+				t.Error("expected first element to be 3")
+			}
+			if r[len(r)-1] != 5 {
+				t.Error("expected last element to be 5")
+			}
+		})
+
+		t.Run("string", func(t *testing.T) {
+			s1 := []string{"a", "b", "c", "d", "e"}
+			s2 := []string{"c", "d", "e", "f", "g"}
+			r := Intersection(s1, s2)
+			if len(r) != 3 {
+				t.Errorf("expected length to be 3, got %d", len(r))
+			}
+			if r[0] != "c" {
+				t.Error("expected first element to be c")
+			}
+			if r[len(r)-1] != "e" {
+				t.Error("expected last element to be e")
+			}
+		})
+	})
 }
 
 func BenchmarkSlice(b *testing.B) {

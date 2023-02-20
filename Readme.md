@@ -1,4 +1,4 @@
-# go-pkgs
+# go-pkgs [![CICD](https://github.com/neurocode-io/go-pkgs/actions/workflows/main.yaml/badge.svg)](https://github.com/neurocode-io/go-pkgs/actions/workflows/main.yaml)
 
 Collection of Go packages that I use in my projects. Implemented with go generics. Thus they are compatible with Go 1.18+.
 
