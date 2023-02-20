@@ -34,5 +34,5 @@ jobs:
           else
             COLOR=orange
           fi
-          curl "https://img.shields.io/badge/coavrege-$total%25-$COLOR" > badge.svg
+          curl "https://img.shields.io/badge/coverage-$total%25-$COLOR" > badge.svg
           aws s3api put-object --cache-control no-cache --content-type image/svg+xml --bucket code-coverage --key go-pkgs.svg --body badge.svg --endpoint-url https://a13880696afbb75cf78cdb89324aafbc.r2.cloudflarestorage.com
