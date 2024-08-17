@@ -37,9 +37,9 @@ type multiError struct {
 }
 
 type Group[T any] struct {
+	cancel    func()
 	results   []T
 	errs      []error
-	cancel    func()
 	wg        sync.WaitGroup
 	mutex     sync.Mutex
 	threshold int
