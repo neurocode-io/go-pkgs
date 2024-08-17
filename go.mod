@@ -1,10 +1,10 @@
 module github.com/neurocode-io/go-pkgs
 
-go 1.18
+go 1.20
 
 require (
-	github.com/stretchr/testify v1.8.1
-	golang.org/x/exp v0.0.0-20230213192124-5e25df0256eb
+	github.com/stretchr/testify v1.9.0
+	golang.org/x/exp v0.0.0-20240808152545-0cdaa3abc0fa
 )
 
 require (
