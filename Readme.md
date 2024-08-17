@@ -24,10 +24,27 @@ Map is a package that provides a set of functions to work with maps.
 
 Set is a package that provides a generic set implementation.
 
-### streams
-
-Coming soon
-
 ### async
+
+```
+group := result.Group[ResultType]{}
+
+ctx := context.Background()
+threshold := 1
+
+group, ctx := resultgroup.WithErrorsThreshold[ResultType](ctx, threshold)
+
+group.Go(func() ([]ResultType, error) {
+    return []ResultType{}, nil
+})
+
+results, err := group.Wait()
+if err != nil {
+		fmt.Println("Error:", err)
+    fmt.Println("Wrapped errors", err.Unwrap())
+	}
+```
+
+### streams
 
 Coming soon
