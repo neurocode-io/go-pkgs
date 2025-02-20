@@ -49,7 +49,7 @@ func (m *AsyncMap[T, V]) Load(key T) (value V, ok bool) {
 		return value, ok
 	}
 
-	return v.(V), ok
+	return v.(V), ok //nolint:errcheck
 }
 
 /*
@@ -64,7 +64,7 @@ Example
 func (m *AsyncMap[T, V]) LoadOrStore(key T, value V) (V, bool) {
 	v, loaded := m.item.LoadOrStore(key, value)
 
-	return v.(V), loaded
+	return v.(V), loaded //nolint:errcheck
 }
 
 /*
@@ -83,7 +83,7 @@ func (m *AsyncMap[T, V]) LoadAndDelete(key T) (value V, ok bool) {
 		return value, ok
 	}
 
-	return v.(V), ok
+	return v.(V), ok //nolint:errcheck
 }
 
 /*
@@ -115,6 +115,6 @@ Example
 */
 func (m *AsyncMap[T, V]) Range(fn func(key T, value V) bool) {
 	m.item.Range(func(key, value any) bool {
-		return fn(key.(T), value.(V))
+		return fn(key.(T), value.(V)) //nolint:errcheck
 	})
 }
