@@ -36,15 +36,17 @@ Example
 	result := structs.ToMap(input)
 	// result == map[string]any{"Name": "John", "Age": 30}
 */
+//nolint:gocognit,cyclop
 func ToMap(input any) any {
 	val := reflect.ValueOf(input)
 
-	switch val.Kind() {
+	switch val.Kind() { //nolint:exhaustive
 	case reflect.Pointer:
 		// Dereference pointers
 		if val.IsNil() {
 			return nil
 		}
+
 		return ToMap(val.Elem().Interface())
 
 	case reflect.Struct:
@@ -59,6 +61,7 @@ func ToMap(input any) any {
 			}
 			out[field.Name] = ToMap(val.Field(i).Interface())
 		}
+
 		return out
 
 	case reflect.Slice, reflect.Array:
@@ -68,6 +71,7 @@ func ToMap(input any) any {
 		for i := 0; i < length; i++ {
 			out = append(out, ToMap(val.Index(i).Interface()))
 		}
+
 		return out
 
 	case reflect.Map:
@@ -78,6 +82,7 @@ func ToMap(input any) any {
 			strKey := fmt.Sprintf("%v", key.Interface())
 			out[strKey] = ToMap(val.MapIndex(key).Interface())
 		}
+
 		return out
 
 	default:
